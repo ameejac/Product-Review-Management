@@ -1,0 +1,56 @@
+﻿using System;
+using System.Linq;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace LINQDemo
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //uc1 creating product review records
+            List<ProductReview> list = new List<ProductReview>()
+            {
+                new ProductReview(){ ProductId=1,UserId=1,Review="bad",Rating=5,IsLike=false},
+                new ProductReview(){ProductId=2,UserId=3,Review ="good",Rating=10,IsLike=true },
+                new ProductReview(){ProductId=3,UserId=4,Review ="average",Rating=15,IsLike=false },
+                new ProductReview(){ProductId=4,UserId=5,Review ="bad",Rating=16,IsLike=true },
+                new ProductReview(){ProductId=5,UserId=3,Review ="good",Rating=10,IsLike=true },
+                new ProductReview(){ProductId=6,UserId=8,Review ="bad",Rating=18,IsLike=true },
+                new ProductReview(){ProductId=7,UserId=2,Review ="good",Rating=5,IsLike=true },
+                new ProductReview(){ProductId=8,UserId=3,Review ="good",Rating=15,IsLike=true },
+                new ProductReview(){ProductId=9,UserId=5,Review ="average",Rating=8,IsLike=true },
+                new ProductReview(){ProductId=1,UserId=4,Review ="bad",Rating=10,IsLike=false },
+                new ProductReview(){ProductId=4,UserId=3,Review ="good",Rating=4,IsLike=true },
+                new ProductReview(){ProductId=2,UserId=1,Review ="average",Rating=9,IsLike=true },
+                new ProductReview(){ProductId=3,UserId=2,Review ="average",Rating=13,IsLike=true },
+                new ProductReview(){ProductId=4,UserId=8,Review ="good",Rating=12,IsLike=true },
+                new ProductReview(){ProductId=5,UserId=1,Review ="bad",Rating=10,IsLike=false },
+                new ProductReview(){ProductId=1,UserId=9,Review ="good",Rating=5,IsLike=true },
+                new ProductReview(){ProductId=7,UserId=3,Review ="bad",Rating=8,IsLike=false },
+                new ProductReview(){ProductId=8,UserId=4,Review ="good",Rating=9,IsLike=true },
+                new ProductReview(){ProductId=1,UserId=3,Review ="bad",Rating=4,IsLike=false },
+                new ProductReview(){ProductId=2,UserId=2,Review ="good",Rating=2,IsLike=true },
+                new ProductReview(){ProductId=1,UserId=5,Review ="average",Rating=15,IsLike=true },
+                new ProductReview(){ProductId=2,UserId=4,Review ="good",Rating=12,IsLike=true },
+                new ProductReview(){ProductId=3,UserId=1,Review ="average",Rating=13,IsLike=true },
+                new ProductReview(){ProductId=2,UserId=5,Review ="bad",Rating=17,IsLike=false },
+                new ProductReview(){ProductId=5,UserId=4,Review ="good",Rating=19,IsLike=true },
+            };
+            IterateOverProductList(list);
+            Console.ReadLine();
+
+        }
+        //uc1 Add 25 values in the list
+        public static void IterateOverProductList(List<ProductReview> list)
+        {
+            foreach(ProductReview product in list)
+            {
+                Console.WriteLine("ProductId:" + product.ProductId + "\t" + "UserId:" + product.UserId + "\t" + "ProductReview:" + product.Review + "\t" + "Product:" + product.Review + "\t");
+            }
+        }
+       
+    }
+}
