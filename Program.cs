@@ -40,6 +40,7 @@ namespace LINQDemo
                 new ProductReview(){ProductId=5,UserId=4,Review ="good",Rating=19,IsLike=true },
             };
             IterateOverProductList(list);
+            RetriveTop3RecordsList(list);
             Console.ReadLine();
 
         }
@@ -51,6 +52,17 @@ namespace LINQDemo
                 Console.WriteLine("ProductId:" + product.ProductId + "\t" + "UserId:" + product.UserId + "\t" + "ProductReview:" + product.Review + "\t" + "Product:" + product.Review + "\t");
             }
         }
-       
+        //uc2 Retrive top 3 records froms the list 
+        public static void RetriveTop3RecordsList(List<ProductReview> list)
+        {
+            //using Linq
+            var result = (from product in list orderby product.Rating descending select product).ToList();
+            Console.WriteLine("After sort in desending order based on rating");
+            IterateOverProductList(result);
+            var top3Records = result.Take(3).ToList();
+            Console.WriteLine("RetriveTop3RecordsList");
+            IterateOverProductList(top3Records);
+
+        }
     }
 }
