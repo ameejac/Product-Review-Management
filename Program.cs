@@ -43,6 +43,7 @@ namespace LINQDemo
             RetriveTop3RecordsList(list);
             RetrieveBasedOnRatingAndProductId(list);
             CountingProductId(list);
+            RetrieveOnlyProductIdandReview(list);
             Console.ReadLine();
 
         }
@@ -84,6 +85,15 @@ namespace LINQDemo
                     Console.WriteLine("");
                 }
             }
-
+           //UC5 Retrieve only ProductId and Review  from the Records list
+           public static void RetrieveOnlyProductIdandReview(List<ProductReview> list)
+           {
+              var data = (list.Select(Product => new { ProductId = Product.ProductId, review = Product.Review }).ToList());
+              foreach(var element in data)
+              {
+                Console.WriteLine("RetrieveProductId:" + element.ProductId + "review:" + element.review);
+                Console.WriteLine("");
+              }
+           }
     }
 }
