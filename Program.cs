@@ -44,6 +44,7 @@ namespace LINQDemo
             RetrieveBasedOnRatingAndProductId(list);
             CountingProductId(list);
             RetrieveOnlyProductIdandReview(list);
+            SkipTop5RecordsInThedataList(list);
             Console.ReadLine();
 
         }
@@ -63,7 +64,7 @@ namespace LINQDemo
                 Console.WriteLine("After sort in desending order based on rating");
                 IterateOverProductList(result);
                 var top3Records = result.Take(3).ToList();
-                Console.WriteLine("RetriveTop3RecordsList");
+            Console.WriteLine("RetriveTop3RecordsList");
                 IterateOverProductList(top3Records);
 
             }
@@ -95,5 +96,14 @@ namespace LINQDemo
                 Console.WriteLine("");
               }
            }
+       
+         //UC6 Skip Top 5 Records in the list
+        public static void SkipTop5RecordsInThedataList(List<ProductReview> list)
+        {
+            Console.WriteLine("skip the Top 5 Records in data list:" + "\t");
+            var res = (from product in list orderby product.Rating descending select product).Skip(5).ToList();
+
+            IterateOverProductList(res);
+        }
     }
 }
