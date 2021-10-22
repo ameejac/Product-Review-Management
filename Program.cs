@@ -42,36 +42,48 @@ namespace LINQDemo
             IterateOverProductList(list);
             RetriveTop3RecordsList(list);
             RetrieveBasedOnRatingAndProductId(list);
+            CountingProductId(list);
             Console.ReadLine();
 
         }
-        //uc1 Add 25 values in the list
-        public static void IterateOverProductList(List<ProductReview> list)
-        {
-            foreach(ProductReview product in list)
+            //uc1 Add 25 values in the list
+            public static void IterateOverProductList(List<ProductReview> list)
             {
-                Console.WriteLine("ProductId:" + product.ProductId + "\t" + "UserId:" + product.UserId + "\t" + "ProductReview:" + product.Review + "\t" + "Product:" + product.Review + "\t");
+                foreach (ProductReview product in list)
+                {
+                    Console.WriteLine("ProductId:" + product.ProductId + "\t" + "UserId:" + product.UserId + "\t" + "ProductReview:" + product.Review + "\t" + "Product:" + product.Review + "\t");
+                }
             }
-        }
-        //uc2 Retrive top 3 records froms the list 
-        public static void RetriveTop3RecordsList(List<ProductReview> list)
-        {
-            //using Linq
-            var result = (from product in list orderby product.Rating descending select product).ToList();
-            Console.WriteLine("After sort in desending order based on rating");
-            IterateOverProductList(result);
-            var top3Records = result.Take(3).ToList();
-            Console.WriteLine("RetriveTop3RecordsList");
-            IterateOverProductList(top3Records);
+            //uc2 Retrive top 3 records froms the list 
+            public static void RetriveTop3RecordsList(List<ProductReview> list)
+            {
+                //using Linq
+                var result = (from product in list orderby product.Rating descending select product).ToList();
+                Console.WriteLine("After sort in desending order based on rating");
+                IterateOverProductList(result);
+                var top3Records = result.Take(3).ToList();
+                Console.WriteLine("RetriveTop3RecordsList");
+                IterateOverProductList(top3Records);
 
-        }
-        //UC3 Retrieve All Records From The List whose reating is greater than 3 and product Id is eaither 1 or 4or 9
-        public static void RetrieveBasedOnRatingAndProductId(List<ProductReview> list)
-        {
-            //using Linq
-            var data = (list.Where(r => r.Rating > 3 && (r.ProductId == 1 || r.ProductId == 4 || r.ProductId == 9))).ToList();
-            Console.WriteLine("Retrieve  recorrds is based on Rating and Product Id : \t");
-            IterateOverProductList(data);
-        }
+            }
+            //UC3 Retrieve All Records From The List whose reating is greater than 3 and product Id is eaither 1 or 4or 9
+            public static void RetrieveBasedOnRatingAndProductId(List<ProductReview> list)
+            {
+                //using Linq
+                var data = (list.Where(r => r.Rating > 3 && (r.ProductId == 1 || r.ProductId == 4 || r.ProductId == 9))).ToList();
+                Console.WriteLine("Retrieve  recorrds is based on Rating and Product Id : \t");
+                IterateOverProductList(data);
+            }
+            //Uc4 Counting The Each ProductId is present In The List
+            public static void CountingProductId(List<ProductReview> list)
+            {
+                var data = (list.GroupBy(p => p.ProductId).Select(x => new { productId = x.Key, count = x.Count() }));
+                foreach (var element in data)
+                {
+                    Console.WriteLine("productId:" + element.productId + "\t" + "Count" + element.count);
+                    Console.WriteLine("");
+                }
+            }
+
     }
 }
