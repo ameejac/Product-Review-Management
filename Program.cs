@@ -41,6 +41,7 @@ namespace LINQDemo
             };
             IterateOverProductList(list);
             RetriveTop3RecordsList(list);
+            RetrieveBasedOnRatingAndProductId(list);
             Console.ReadLine();
 
         }
@@ -63,6 +64,14 @@ namespace LINQDemo
             Console.WriteLine("RetriveTop3RecordsList");
             IterateOverProductList(top3Records);
 
+        }
+        //UC3 Retrieve All Records From The List whose reating is greater than 3 and product Id is eaither 1 or 4or 9
+        public static void RetrieveBasedOnRatingAndProductId(List<ProductReview> list)
+        {
+            //using Linq
+            var data = (list.Where(r => r.Rating > 3 && (r.ProductId == 1 || r.ProductId == 4 || r.ProductId == 9))).ToList();
+            Console.WriteLine("Retrieve  recorrds is based on Rating and Product Id : \t");
+            IterateOverProductList(data);
         }
     }
 }
